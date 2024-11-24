@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Analysis Results for {{ dataset_name }}</h1>
+
+        <!-- 5 Vs of Data -->
+        <div class="row mt-4">
+            {% for v, value in five_vs.items() %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">{{ v }}</div>
+                    <div class="card-body">{{ value }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Tabs for Basic and Advanced Analytics -->
+        <ul class="nav nav-tabs mt-4" id="resultsTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab">Basic Analysis</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced" type="button" role="tab">Advanced Analytics</button>
+            </li>
+        </ul>
+        <div class="tab-content mt-4" id="resultsTabsContent">
+            <!-- Basic Analysis -->
+            <div class="tab-pane fade show active" id="basic" role="tabpanel">
+                <h3>Basic Analysis</h3>
+                {% for graph in basic_graphs %}
+                <div class="mb-4">{{ graph | safe }}</div>
+                {% endfor %}
+            </div>
+            <!-- Advanced Analytics -->
+            <div class="tab-pane fade" id="advanced" role="tabpanel">
+                <h3>Advanced Analytics</h3>
+                {% for analysis in advanced_analytics %}
+                <div class="mb-4">{{ analysis | safe }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="/" class="btn btn-secondary mt-4">Go Back</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Data Analysis Website</h1>
+        <p class="text-center">Select a dataset to analyze its metrics and visualizations.</p>
+        <form method="POST" action="/analyze">
+            <div class="mb-3">
+                <label for="dataset" class="form-label">Choose Dataset</label>
+                <select class="form-select" id="dataset" name="dataset" required>
+                    {% for name in datasets.keys() %}
+                        <option value="{{ name }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Analyze Data</button>
+        </form>
+        
+    </div>
+</body>
+</html>
